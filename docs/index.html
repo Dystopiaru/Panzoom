@@ -3,7 +3,7 @@
   <head>
     <title>Схема электрооборудования УАЗ Патриот 2013</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
     <style type="text/css">
 			@font-face {
 				font-family: 'GOST type A';
@@ -16,7 +16,9 @@
 				font-style: italic;
 			}
 			
-			
+			html{
+
+			}
       body { 
 				font-family: "GOST type A";
 				-webkit-user-select: none;
@@ -2565,18 +2567,21 @@
 				document.body.classList.add('dragging');
 			});
 			
-			elSchemeWrapper.addEventListener('touchstart', (event) => {
+			document.addEventListener('touchstart', (event) => {
+			
 				if (event.touches.length === 2) {
+					event.preventDefault();
 					initialDistance = getDistance(event.touches); // Запоминаем начальное расстояние
 					dystopiaru.panzoom.srcWidth = elScheme.clientWidth;
-					dystopiaru.panzoom.srcSchemeX = (window.scrollX + event.clientX - elScheme.offsetLeft) / elScheme.clientWidth;
-					dystopiaru.panzoom.srcSchemeY = (window.scrollY + event.clientY - elScheme.offsetTop) / elScheme.clientHeight;
+					const clientX = (event.touches[0].clientX+event.touches[1].clientX)/2;
+					const clientY = (event.touches[0].clientY+event.touches[1].clientY)/2;
+					dystopiaru.panzoom.srcSchemeX = (window.scrollX + clientX - elScheme.offsetLeft) / elScheme.clientWidth;
+					dystopiaru.panzoom.srcSchemeY = (window.scrollY + clientY - elScheme.offsetTop) / elScheme.clientHeight;
 				}
-			});
-		
-			window.addEventListener('touchmove', (event) => {
+			},{passive: false});
+					
+			document.addEventListener('touchmove', (event) => {
 				if (event.touches.length === 2) {
-					event.preventDefault(); // Предотвращаем стандартное поведение
 					const currentDistance = getDistance(event.touches); // Текущее расстояние
 					const zoomFactor = currentDistance / initialDistance; // Вычисляем масштаб
 
@@ -2590,8 +2595,11 @@
 					elScheme.style.width = dstWidth+'px';
 					
 					//Возвращение позиции скролла
-					document.documentElement.scrollLeft = dystopiaru.panzoom.srcSchemeX * elScheme.clientWidth - event.clientX + elScheme.offsetLeft;
-					document.documentElement.scrollTop = dystopiaru.panzoom.srcSchemeY * elScheme.clientHeight - event.clientY + elScheme.offsetTop;
+					const clientX = (event.touches[0].clientX+event.touches[1].clientX)/2;
+					const clientY = (event.touches[0].clientY+event.touches[1].clientY)/2;
+
+					document.documentElement.scrollLeft = dystopiaru.panzoom.srcSchemeX * elScheme.clientWidth - clientX + elScheme.offsetLeft;
+					document.documentElement.scrollTop = dystopiaru.panzoom.srcSchemeY * elScheme.clientHeight - clientY + elScheme.offsetTop;
 				
 					//box.style.transform = `scale(${scale})`; // Применяем масштаб
 					//initialDistance = currentDistance; // Обновляем расстояние
@@ -2604,7 +2612,7 @@
 				}
 			});
 
-			elSchemeWrapper.addEventListener("wheel", (event) => {
+			document.addEventListener("wheel", (event) => {
 				event.preventDefault(); 
 
 				const multiplier = 1.25;
@@ -2618,7 +2626,7 @@
 				//Возвращение позиции скролла
 				document.documentElement.scrollLeft = cursorSchemeX * elScheme.clientWidth - event.clientX + elScheme.offsetLeft;
 				document.documentElement.scrollTop = cursorSchemeY * elScheme.clientHeight - event.clientY + elScheme.offsetTop;
-			});
+			},{passive: false});
 		
 			window.addEventListener('mousemove', (event) => {
 				if (!isDragging) return;
