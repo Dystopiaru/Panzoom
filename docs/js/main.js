@@ -22,8 +22,10 @@ const main = class {
 					} else {
 						elMarker.classList.add('c2-'+this.colorClass(color1));
 					}
-					elMarker.dataset.group = this.colorClass(color1) + (color2 ? '-'+this.colorClass(color2) : '')+(number ? '-'+number : '');
-					elMarker.dataset.action = 'wiring';
+					if(number){
+						elMarker.dataset.group = this.colorClass(color1) + (color2 ? '-'+this.colorClass(color2) : '') + '-' + number;
+						elMarker.dataset.action = 'wiring';
+					}
 					return true;
 				} 
 				
