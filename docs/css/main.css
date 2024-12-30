@@ -1,0 +1,200 @@
+@font-face {
+	font-family: 'GOST type A';
+	src: url('../font/GOST type A.eot');
+	src: local('GOST type A'),
+		url('../font/GOST_type_A.woff') format('woff'),
+		url('../font/GOST_type_A.eot?#iefix') format('embedded-opentype'),
+		url('../font/GOST_type_A.ttf') format('truetype');
+	font-weight: normal;
+	font-style: italic;
+}
+
+body { 
+	font-family: "GOST type A";
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	display: block !important;
+}
+
+#scheme-wrapper {
+	cursor: grab;
+	padding-left: 230px;
+}
+
+.hide {
+	visibility: hidden;
+}
+
+body.dragging #scheme {
+	cursor: grabbing;
+}
+
+#scheme-wrapper #scheme {
+	background: url('../data/scheme.png');
+	background-repeat: no-repeat;
+	background-size: contain;
+	width:3000px;
+}
+
+#scheme-wrapper #scheme svg {
+	width:100%;
+	height:100%;
+}
+
+#left-panel {
+	padding: 20px;
+	left:0px;
+	top:0px;
+	position:fixed;
+	min-height: 100vh;
+	width:230px;
+	max-width:20%;
+	background:#ffffff;
+	border: 1px solid #c0c0c0;
+	overflow: hidden;
+}
+
+#left-panel .subpanel {
+	height: calc(50vh - 40px);
+	overflow-x: hidden;
+	overflow-y: scroll;
+}
+
+#left-panel .scroll-btn {
+	font-size: 20px;
+	padding:5px;
+	cursor: pointer;
+}
+
+#left-panel .scroll-btn:hover {
+	font-weight: bold;
+}
+
+h3 {
+	font-size: 20px;
+	margin: 5px;
+}
+
+@media (max-width: 800px) {
+	#left-panel {
+			top: 70vh;
+			height: 30vh;
+			width: calc(100vw - 40px);
+			min-width: calc(100vw - 40px);
+	}
+	#left-panel h3 {
+		display:none;
+	}
+	#left-panel .subpanel1 {
+		display:inline-block;
+		width: calc(20% - 5px);
+		height: calc(30vh - 40px);
+	}
+	#left-panel .subpanel2 {
+		display:inline-block;
+		width: 80%;
+		height: calc(30vh - 40px);
+	}
+	
+	#left-panel .scroll-btn {
+		font-size:20px;
+		padding:5px;
+	}
+	#scheme-wrapper {
+		padding-left: 0px;
+		padding-bottom: 30vh;
+	}
+}
+
+g text {
+	paint-order: stroke;
+	stroke-width: 14 !important;
+	font-weight: normal;
+	cursor: pointer;
+	font-family: "GOST type A";
+}
+
+g text.active {
+	font-weight: bold;
+	animation: blink 1000ms infinite;
+}
+
+@keyframes blink {
+	50% {
+		opacity: 1;
+	}
+	100%,0% {
+		opacity: 0.1;
+	}
+}
+.c1-black {
+	fill: black;
+}
+.c1-blue {
+	fill: blue;
+}			
+.c1-brown {
+	fill: brown;
+}			
+.c1-green {
+	fill: green;
+}		
+.c1-grey {
+	fill: grey;
+}		
+.c1-orange {
+	fill: orange;
+}			
+.c1-pink {
+	fill: pink;
+}			
+.c1-red {
+	fill: red;
+}
+.c1-violet {
+	fill: violet;
+}
+.c1-white {
+	fill: white;
+	filter: drop-shadow(0px 0px 5px gray)
+}
+.c1-yellow {
+	fill: yellow;
+	filter: drop-shadow(0px 0px 5px gray)
+}
+.c2-black {
+	stroke: black;
+}
+.c2-blue {
+	stroke: blue;
+}			
+.c2-brown {
+	stroke: brown;
+}			
+.c2-green {
+	stroke: green;
+}		
+.c2-grey {
+	stroke: grey;
+}		
+.c2-orange {
+	stroke: orange;
+}			
+.c2-pink {
+	stroke: pink;
+}			
+.c2-red {
+	stroke: red;
+}
+.c2-violet {
+	stroke: violet;
+}
+.c2-white {
+	stroke: white;
+	filter: drop-shadow(0px 0px 5px gray)
+}
+.c2-yellow {
+	stroke: yellow;
+	filter: drop-shadow(0px 0px 5px gray)
+}
