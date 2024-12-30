@@ -81,6 +81,26 @@
 			h3 {
 				font-size: 30px;
 			}
+			
+			@media (max-width: 800px) {
+					#left-panel {
+							top: 70vh;
+							height: 30vh;
+							width: calc(100vw - 40px);
+							min-width: calc(100vw - 40px);
+					}
+					#left-panel h3 {
+						display:none;
+					}
+					#left-panel .subpanel {
+						display:inline-block;
+						width: calc(50% - 5px);
+					}
+					#left-panel .scroll-btn {
+						font-size:30px;
+						padding:5px;
+					}
+			}
     </style>
   </head>
   <body>
