@@ -2574,13 +2574,13 @@
 					const currentDistance = getDistance(e.touches); // Текущее расстояние
 					const zoomFactor = currentDistance / initialDistance; // Вычисляем масштаб
 
-					scale *= zoomFactor; // Обновляем масштаб
-					scale = Math.max(0.5, Math.min(scale, 3)); // Ограничиваем масштаб
+					//scale *= zoomFactor; // Обновляем масштаб
+					//scale = Math.max(0.5, Math.min(scale, 3)); // Ограничиваем масштаб
 
 					const cursorSchemeX = (window.scrollX + event.clientX - elScheme.offsetLeft) / elScheme.clientWidth;
 					const cursorSchemeY = (window.scrollY + event.clientY - elScheme.offsetTop) / elScheme.clientHeight;
 					
-					const dstWidth = elScheme.clientWidth*scale;
+					const dstWidth = elScheme.clientWidth*zoomFactor;
 					elScheme.style.width = dstWidth+'px';
 					
 					//Возвращение позиции скролла
