@@ -15,11 +15,13 @@
 				font-style: italic;
 			}
 			
+			
       body { 
 				font-family: "GOST_type_A";
 				-webkit-user-select: none;
 				-ms-user-select: none;
 				user-select: none;
+				touch-action: none;
 			}
 
 			#scheme-wrapper {
@@ -89,9 +91,9 @@ viewBox="0 0 101495.78 40495.69"
  <defs>
   <font id="FontID0" horiz-adv-x="488" font-variant="normal" class="str0" style="fill-rule:nonzero" font-style="normal" font-weight="400">
 	<font-face 
-		font-family="GOST type A">
+		font-family="GOST_type_A">
 		<font-face-src>
-			<font-face-name name="GOST type A"/>
+			<font-face-name name="GOST_type_A"/>
 		</font-face-src>
 	</font-face>
    <missing-glyph><path d="M0 0z"/></missing-glyph>
@@ -2554,7 +2556,7 @@ viewBox="0 0 101495.78 40495.69"
 			event.preventDefault(); 
 
 			const multiplier = 1.25;
-			const dstWidth = event.deltaY > 0 ? elScheme.clientWidth * multiplier : elScheme.clientWidth / multiplier;
+			const dstWidth = event.deltaY < 0 ? elScheme.clientWidth * multiplier : elScheme.clientWidth / multiplier;
 
 			const cursorSchemeX = (window.scrollX + event.clientX - elScheme.offsetLeft) / elScheme.clientWidth;
 			const cursorSchemeY = (window.scrollY + event.clientY - elScheme.offsetTop) / elScheme.clientHeight;
