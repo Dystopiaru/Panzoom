@@ -2545,6 +2545,9 @@
 			let startX, startY, scrollLeft, scrollTop;
 			let initialDistance = 0; // Начальное расстояние между пальцами
 			let scale = 1; // Текущий масштаб
+			
+			const dystopiaru = {};
+			dystopiaru.panzoom = {};
 
 			function getDistance(touches) {
 				const [touch1, touch2] = touches;
@@ -2565,6 +2568,9 @@
 			elSchemeWrapper.addEventListener('touchstart', (e) => {
 				if (e.touches.length === 2) {
 					initialDistance = getDistance(e.touches); // Запоминаем начальное расстояние
+					dystopiaru.panzom.srcWidth = elScheme.clientWidth;
+					dystopiaru.panzom.srcSchemeX = (window.scrollX + event.clientX - elScheme.offsetLeft) / elScheme.clientWidth;
+					dystopiaru.panzom.srcSchemeY = (window.scrollY + event.clientY - elScheme.offsetTop) / elScheme.clientHeight;
 				}
 			});
 		
@@ -2580,12 +2586,12 @@
 					const cursorSchemeX = (window.scrollX + event.clientX - elScheme.offsetLeft) / elScheme.clientWidth;
 					const cursorSchemeY = (window.scrollY + event.clientY - elScheme.offsetTop) / elScheme.clientHeight;
 					
-					const dstWidth = elScheme.clientWidth*zoomFactor;
+					const dstWidth = dystopiaru.panzom.srcWidth * zoomFactor;
 					elScheme.style.width = dstWidth+'px';
 					
 					//Возвращение позиции скролла
-					document.documentElement.scrollLeft = cursorSchemeX * elScheme.clientWidth - event.clientX + elScheme.offsetLeft;
-					document.documentElement.scrollTop = cursorSchemeY * elScheme.clientHeight - event.clientY + elScheme.offsetTop;
+					document.documentElement.scrollLeft = dystopiaru.panzom.srcSchemeX * elScheme.clientWidth - event.clientX + elScheme.offsetLeft;
+					document.documentElement.scrollTop = dystopiaru.panzom.srcSchemeY * elScheme.clientHeight - event.clientY + elScheme.offsetTop;
 				
 					//box.style.transform = `scale(${scale})`; // Применяем масштаб
 					//initialDistance = currentDistance; // Обновляем расстояние
