@@ -2565,19 +2565,19 @@
 				document.body.classList.add('dragging');
 			});
 			
-			elSchemeWrapper.addEventListener('touchstart', (e) => {
-				if (e.touches.length === 2) {
-					initialDistance = getDistance(e.touches); // Запоминаем начальное расстояние
+			elSchemeWrapper.addEventListener('touchstart', (event) => {
+				if (event.touches.length === 2) {
+					initialDistance = getDistance(event.touches); // Запоминаем начальное расстояние
 					dystopiaru.panzom.srcWidth = elScheme.clientWidth;
 					dystopiaru.panzom.srcSchemeX = (window.scrollX + event.clientX - elScheme.offsetLeft) / elScheme.clientWidth;
 					dystopiaru.panzom.srcSchemeY = (window.scrollY + event.clientY - elScheme.offsetTop) / elScheme.clientHeight;
 				}
 			});
 		
-			window.addEventListener('touchmove', (e) => {
-				if (e.touches.length === 2) {
-					e.preventDefault(); // Предотвращаем стандартное поведение
-					const currentDistance = getDistance(e.touches); // Текущее расстояние
+			window.addEventListener('touchmove', (event) => {
+				if (event.touches.length === 2) {
+					event.preventDefault(); // Предотвращаем стандартное поведение
+					const currentDistance = getDistance(event.touches); // Текущее расстояние
 					const zoomFactor = currentDistance / initialDistance; // Вычисляем масштаб
 
 					//scale *= zoomFactor; // Обновляем масштаб
