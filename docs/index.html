@@ -65,12 +65,14 @@
 			}
 			
 			#left-panel .subpanel {
-				height: 50vh;
+				height: calc(50vh - 40px);
 				overflow-x: hidden;
 				overflow-y: scroll;
 			}
 			
 			#left-panel .scroll-btn {
+				font-size: 20px;
+				padding:5px;
 				cursor: pointer;
 			}
 			
@@ -79,7 +81,8 @@
 			}
 
 			h3 {
-				font-size: 30px;
+				font-size: 20px;
+				margin: 5px;
 			}
 			
 			@media (max-width: 800px) {
@@ -92,13 +95,24 @@
 					#left-panel h3 {
 						display:none;
 					}
-					#left-panel .subpanel {
+					#left-panel .subpanel1 {
 						display:inline-block;
-						width: calc(50% - 5px);
+						width: calc(20% - 5px);
+						height: calc(30vh - 40px);
 					}
+					#left-panel .subpanel2 {
+						display:inline-block;
+						width: calc(80% - 5px);
+						height: calc(30vh - 40px);
+					}
+					
 					#left-panel .scroll-btn {
-						font-size:30px;
+						font-size:20px;
 						padding:5px;
+					}
+					#scheme-wrapper {
+						padding-left: 0px;
+						padding-bottom: 30vh;
 					}
 			}
     </style>
@@ -2549,12 +2563,12 @@
 			</div>
 	  </div>
 		<div id="left-panel">
-			<div class="subpanel">
+			<div class="subpanel subpanel1">
 				<h3>Выбранный провод</h3>
 				<div data-type="wires">
 				</div>
 			</div>
-			<div class="subpanel">
+			<div class="subpanel subpanel2">
 			<h3>Компоненты</h3>
 				<div data-type="modules">
 				</div>
@@ -2632,7 +2646,11 @@
 				}
 			});
 
-			document.addEventListener("wheel", (event) => {
+			//document.addEventListener("wheel", (event) => {
+			//	event.preventDefault(); 
+			//},{passive: false});
+				
+			elScheme.addEventListener("wheel", (event) => {
 				event.preventDefault(); 
 
 				const multiplier = 1.25;
