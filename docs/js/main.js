@@ -7,7 +7,7 @@ const main = class {
 	};
 	
 	init(){
-		const fetchEnabled=false;
+		const fetchEnabled=true;
 		if(fetchEnabled){
 			this.svgFetch();
 		} else {
