@@ -47,7 +47,7 @@ const main = class {
 	svgFetch(){
 		fetch('../data/scheme.svg').then(response => response.text()).then(svg => {
 			document.getElementById('scheme').innerHTML = svg;
-			main.svgInit();
+			this.svgInit();
 		});
 	}
 	
