@@ -15,11 +15,18 @@ body {
 	-ms-user-select: none;
 	user-select: none;
 	display: block !important;
+	overflow:hidden;
 }
 
 #scheme-wrapper {
 	cursor: grab;
-	padding-left: 230px;
+	padding: 0px;
+	margin: 0px 0px 0px 230px;
+
+	overflow: auto;
+	width: calc(100vw - 238px);
+	height: calc(100vh - 10px);
+	
 }
 
 .hide {
@@ -43,28 +50,32 @@ body.dragging #scheme {
 }
 
 #left-panel {
-	padding: 20px;
+	position:fixed;
 	left:0px;
 	top:0px;
-	position:fixed;
 	min-height: 100vh;
-	width:230px;
-	max-width:20%;
 	background:#ffffff;
 	border: 1px solid #c0c0c0;
 	overflow: hidden;
+	width: 230px;
 }
 
 #left-panel .subpanel {
+	padding: 20px;
 	height: calc(50vh - 40px);
 	overflow-x: hidden;
 	overflow-y: scroll;
+	width: calc(100% - 40px);
 }
 
 #left-panel .scroll-btn {
 	font-size: 20px;
 	padding:5px;
 	cursor: pointer;
+}
+
+#left-panel .scroll-btn.active {
+	font-weight: bold;
 }
 
 #left-panel .scroll-btn:hover {
@@ -77,33 +88,37 @@ h3 {
 }
 
 @media (max-width: 800px) {
+
+	
 	#left-panel {
-			top: 70vh;
-			height: 30vh;
-			width: calc(100vw - 40px);
-			min-width: calc(100vw - 40px);
+		top: 70vh;
+		height: calc(30vh - 10px);
+		width: 100vw;
+		min-width: calc(100vw - 40px);
+		
 	}
 	#left-panel h3 {
 		display:none;
 	}
-	#left-panel .subpanel1 {
+	#left-panel .subpanel {
+		padding: 5px;
 		display:inline-block;
-		width: calc(20% - 5px);
-		height: calc(30vh - 40px);
+		height: calc(30vh - 70px);
+	}
+	#left-panel .subpanel1 {
+		width: calc(20% - 10px);
 	}
 	#left-panel .subpanel2 {
-		display:inline-block;
-		width: 80%;
-		height: calc(30vh - 40px);
+		width: calc(80% - 15px);
 	}
-	
 	#left-panel .scroll-btn {
 		font-size:20px;
 		padding:5px;
 	}
 	#scheme-wrapper {
-		padding-left: 0px;
-		padding-bottom: 30vh;
+		width: calc(100vw - 8px);
+		margin: 0px 0vh 0px 0px;
+		height: calc(70vh - 8px);
 	}
 }
 
@@ -116,9 +131,14 @@ g text {
 }
 
 g text.active {
+	text-decoration: underline;
+}
+
+g text.wiring {
 	font-weight: bold;
 	animation: blink 1000ms infinite;
 }
+
 
 @keyframes blink {
 	50% {

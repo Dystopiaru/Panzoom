@@ -16,10 +16,24 @@ dystopiaru.panzoom = class {
 			let index = dystopiaru.panzoom.elements.push(el)-1;
 			dystopiaru.panzoom.objects[index] = this;
 			this.el = el;	
+			this.elScroller = this.scrollerClosest(el); 
+			console.log(this.elScroller);
 			this.init();
 		}
 		return dystopiaru.panzoom.objects[index];
 	};
+	
+	scrollerClosest = function(elChild) {
+		if (elChild == null) {
+			return null;
+		}
+		if (elChild.scrollHeight > elChild.clientHeight || elChild.scrollWidth > elChild.clientWidth) {
+			return elChild;
+		} else {
+			return this.scrollerClosest(elChild.parentNode);
+		}
+	}
+
 	
 	getDistance(touches) {
 		const [touch1, touch2] = touches;
@@ -42,8 +56,10 @@ dystopiaru.panzoom = class {
 				objPanzoom.start.pointerX = (e.touches[0].clientX + e.touches[1].clientX) / 2;
 				objPanzoom.start.pointerY = (e.touches[0].clientY + e.touches[1].clientY) / 2;
 				//позиция курсора мыши относительно масштарируемого объекта
-				objPanzoom.start.mapX = (window.scrollX + objPanzoom.start.pointerX - objPanzoom.el.offsetLeft) / objPanzoom.start.width;
-				objPanzoom.start.mapY = (window.scrollY + objPanzoom.start.pointerY - objPanzoom.el.offsetTop) / objPanzoom.start.height;
+				const scrollX = objPanzoom.elScroller.scrollLeft;
+				const scrollY = objPanzoom.elScroller.scrollTop;
+				objPanzoom.start.mapX = (scrollX + objPanzoom.start.pointerX - objPanzoom.el.offsetLeft) / objPanzoom.start.width;
+				objPanzoom.start.mapY = (scrollY + objPanzoom.start.pointerY - objPanzoom.el.offsetTop) / objPanzoom.start.height;
 			}
 		},{passive: false});
 					
@@ -55,8 +71,11 @@ dystopiaru.panzoom = class {
 				const pointerX = (e.touches[0].clientX+e.touches[1].clientX)/2;
 				const pointerY = (e.touches[0].clientY+e.touches[1].clientY)/2;
 				//Возвращение позиции скролла
-				document.documentElement.scrollLeft = objPanzoom.start.mapX * objPanzoom.el.clientWidth - pointerX + objPanzoom.el.offsetLeft;
-				document.documentElement.scrollTop = objPanzoom.start.mapY * objPanzoom.el.clientHeight - pointerY + objPanzoom.el.offsetTop;
+				objPanzoom.elScroller.scrollLeft = objPanzoom.start.mapX * objPanzoom.el.clientWidth - pointerX + objPanzoom.el.offsetLeft;
+				objPanzoom.elScroller.scrollTop = objPanzoom.start.mapY * objPanzoom.el.clientHeight - pointerY + objPanzoom.el.offsetTop;
+				
+				//document.documentElement.scrollLeft
+				//document.documentElement.scrollTop 
 			}
 		});
 			
@@ -72,13 +91,18 @@ dystopiaru.panzoom = class {
 			const multiplier = objPanzoom.settings.scrollMultiplier;
 			const width = objPanzoom.el.clientWidth;
 			//позиция курсора мыши относительно масштарируемого объекта
-			const mapX = (window.scrollX + e.clientX - objPanzoom.el.offsetLeft) / objPanzoom.el.clientWidth;
-			const mapY = (window.scrollY + e.clientY - objPanzoom.el.offsetTop) / objPanzoom.el.clientHeight;
+			const scrollX = objPanzoom.elScroller.scrollLeft;
+			const scrollY = objPanzoom.elScroller.scrollTop;
+			const mapX = (scrollX + e.clientX - objPanzoom.el.offsetLeft) / objPanzoom.el.clientWidth;
+			const mapY = (scrollY + e.clientY - objPanzoom.el.offsetTop) / objPanzoom.el.clientHeight;
 			//Применение множителя
 			objPanzoom.el.style.width =  (e.deltaY < 0 ? width * multiplier : width / multiplier)+'px';
 			//Возвращение позиции скролла
-			document.documentElement.scrollLeft = mapX * objPanzoom.el.clientWidth - e.clientX + objPanzoom.el.offsetLeft;
-			document.documentElement.scrollTop = mapY * objPanzoom.el.clientHeight - e.clientY + objPanzoom.el.offsetTop;
+			objPanzoom.elScroller.scrollLeft = mapX * objPanzoom.el.clientWidth - e.clientX + objPanzoom.el.offsetLeft;
+			objPanzoom.elScroller.scrollTop = mapY * objPanzoom.el.clientHeight - e.clientY + objPanzoom.el.offsetTop;
+			
+			//document.documentElement.scrollLeft
+			//document.documentElement.scrollTop 
 		},{passive: false});
 
 		objPanzoom.el.addEventListener('mousedown', (e) => {
@@ -87,14 +111,18 @@ dystopiaru.panzoom = class {
 			objPanzoom.start.pointerX = e.clientX;
 			objPanzoom.start.pointerY = e.clientY;	
 			//текущие значнения скролла
-			objPanzoom.start.scrollX = window.scrollX;
-			objPanzoom.start.scrollY = window.scrollY;
+			const scrollX = objPanzoom.elScroller.scrollLeft;
+			const scrollY = objPanzoom.elScroller.scrollTop;
+			objPanzoom.start.scrollX = scrollX;
+			objPanzoom.start.scrollY = scrollY;
 			document.body.classList.add('dragging');
 		});
 		
 		window.addEventListener('mousemove', (e) => {
 			if (!objPanzoom.isDragging) return;
-			window.scrollTo({
+			
+
+			objPanzoom.elScroller.scrollTo({
 				left: objPanzoom.start.scrollX - e.clientX + objPanzoom.start.pointerX,
 				top: objPanzoom.start.scrollY - e.clientY + objPanzoom.start.pointerY,
 			});

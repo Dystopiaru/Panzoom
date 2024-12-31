@@ -17,17 +17,26 @@ const main = class {
 			const elClick = event.target;
 			const elWires= document.querySelector('[data-type="wires"]');
 			if (elClick.dataset.action=='scrollto') {
+				document.querySelectorAll('.active').forEach((elActive)=>{ elActive.classList.remove('active'); });
+				elClick.classList.add('active');
 				const elMarker = document.querySelector('#'+elClick.dataset.marker);
-				if(elMarker) elMarker.scrollIntoView({behavior: 'smooth', block: 'center', inline: 'center'});
+				if(elMarker) {
+					elMarker.scrollIntoView({behavior: 'smooth', block: 'center', inline: 'center'});
+					elMarker.classList.add('active');
+				}
 			}
 			if (elClick.dataset.action=='wiring') {
+				document.querySelectorAll('.wiring').forEach((elActive)=>{ elActive.classList.remove('wiring'); });
 				document.querySelectorAll('.active').forEach((elActive)=>{ elActive.classList.remove('active'); });
+				elClick.classList.add('active');
+				
 				elWires.innerHTML = '';
 				const arrLinks=[];
 				document.querySelectorAll('[data-group="'+ elClick.dataset.group +'"]').forEach((elMarker)=>{
-					elMarker.classList.add('active');
+					elMarker.classList.add('wiring');
 					const elLink = document.createElement('div');
 					elLink.classList.add('scroll-btn');
+					if(elClick.id==elMarker.id)	elLink.classList.add('active');
 					elLink.dataset.marker=elMarker.id;
 					elLink.dataset.action='scrollto';
 					elLink.innerText=elMarker.innerHTML;
@@ -41,7 +50,6 @@ const main = class {
 				arrLinks.forEach((elLink)=>{ elWires.append(elLink); });
 			}
 		});
-		const objPanzoom  = new dystopiaru.panzoom(document.getElementById('scheme'));
 	}
 	
 	svgFetch(){
@@ -96,6 +104,8 @@ const main = class {
 			return 0;
 		});
 		arrLinks.forEach((elLink)=>{ elModules.append(elLink); });
+		
+		const objPanzoom  = new dystopiaru.panzoom(document.getElementById('scheme'));
 	}
 	
 	//преобразование цветов в классы
