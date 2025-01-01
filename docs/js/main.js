@@ -13,8 +13,10 @@ const main = class {
 		} else {
 			this.svgInit();
 		}
-		document.addEventListener('click', function (event) {
-			const elClick = event.target;
+		document.addEventListener('mousedown', function (e) {
+			e.preventDefault();
+			e.stopPropagation();
+			const elClick = e.target;
 			const elWires= document.querySelector('[data-type="wires"]');
 			if (elClick.dataset.action=='scrollto') {
 				document.querySelectorAll('.active').forEach((elActive)=>{ elActive.classList.remove('active'); });
@@ -50,6 +52,7 @@ const main = class {
 				arrLinks.forEach((elLink)=>{ elWires.append(elLink); });
 			}
 		});
+
 	}
 	
 	svgFetch(){
@@ -105,7 +108,22 @@ const main = class {
 		});
 		arrLinks.forEach((elLink)=>{ elModules.append(elLink); });
 		
-		const objPanzoom  = new dystopiaru.panzoom(document.getElementById('scheme'));
+		const elScheme = document.getElementById('scheme');
+		const objPanzoom  = new dystopiaru.panzoom(elScheme);
+		/*
+		const elSvg = elScheme.children[0];
+		objPanzoom.el.addEventListener('dystopiaru.panzoom.zoom.start',(e)=>{
+			//elSvg.style.visibility='hidden';
+		});
+		objPanzoom.el.addEventListener('dystopiaru.panzoom.zoom.end',(e)=>{
+			//elSvg.style.visibility='visible';
+		});
+		objPanzoom.el.addEventListener('dystopiaru.panzoom.move.start',(e)=>{
+			//elSvg.style.visibility='hidden'
+		});
+		objPanzoom.el.addEventListener('dystopiaru.panzoom.move.end',(e)=>{
+			//elSvg.style.visibility='visible'
+		});*/
 	}
 	
 	//преобразование цветов в классы

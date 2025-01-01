@@ -17,7 +17,6 @@ dystopiaru.panzoom = class {
 			dystopiaru.panzoom.objects[index] = this;
 			this.el = el;	
 			this.elScroller = this.scrollerClosest(el); 
-			console.log(this.elScroller);
 			this.init();
 		}
 		return dystopiaru.panzoom.objects[index];
@@ -34,7 +33,6 @@ dystopiaru.panzoom = class {
 		}
 	}
 
-	
 	getDistance(touches) {
 		const [touch1, touch2] = touches;
 		const dx = touch2.clientX - touch1.clientX;
@@ -42,13 +40,17 @@ dystopiaru.panzoom = class {
 		return Math.sqrt(dx * dx + dy * dy);
 	};
 	
+  trigger(el,eventName){
+    let event = new Event('dystopiaru.panzoom.'+eventName, {bubbles: true});		
+    el.dispatchEvent(event); 	
+  }
+	
 	init(){
 		const objPanzoom = this;
 		document.addEventListener('touchstart', (e) => {
 			if (e.touches.length === 2) {
 				e.preventDefault();
 				objPanzoom.isZooming=true;
-				
 				objPanzoom.start.pointerDistance = objPanzoom.getDistance(e.touches);
 				objPanzoom.start.width = objPanzoom.el.clientWidth;
 				objPanzoom.start.height = objPanzoom.el.clientHeight;
@@ -56,26 +58,31 @@ dystopiaru.panzoom = class {
 				objPanzoom.start.pointerX = (e.touches[0].clientX + e.touches[1].clientX) / 2;
 				objPanzoom.start.pointerY = (e.touches[0].clientY + e.touches[1].clientY) / 2;
 				//позиция курсора мыши относительно масштарируемого объекта
-				const scrollX = objPanzoom.elScroller.scrollLeft;
-				const scrollY = objPanzoom.elScroller.scrollTop;
-				objPanzoom.start.mapX = (scrollX + objPanzoom.start.pointerX - objPanzoom.el.offsetLeft) / objPanzoom.start.width;
-				objPanzoom.start.mapY = (scrollY + objPanzoom.start.pointerY - objPanzoom.el.offsetTop) / objPanzoom.start.height;
+				objPanzoom.start.mapX = (objPanzoom.elScroller.scrollLeft + objPanzoom.start.pointerX - objPanzoom.el.offsetLeft) / objPanzoom.start.width;
+				objPanzoom.start.mapY = (objPanzoom.elScroller.scrollTop + objPanzoom.start.pointerY - objPanzoom.el.offsetTop) / objPanzoom.start.height;
+				document.body.classList.add('dragging');
 			}
 		},{passive: false});
 					
 		document.addEventListener('touchmove', (e) => {
 			if (e.touches.length === 2 && objPanzoom.isZooming) {
+				objPanzoom.trigger(objPanzoom.el,'zoom.start');
 				const zoomFactor = objPanzoom.getDistance(e.touches) / objPanzoom.start.pointerDistance;
-				objPanzoom.el.style.width = (objPanzoom.start.width * zoomFactor)+'px';
 				//средняя точка между пальцами
 				const pointerX = (e.touches[0].clientX+e.touches[1].clientX)/2;
 				const pointerY = (e.touches[0].clientY+e.touches[1].clientY)/2;
 				//Возвращение позиции скролла
-				objPanzoom.elScroller.scrollLeft = objPanzoom.start.mapX * objPanzoom.el.clientWidth - pointerX + objPanzoom.el.offsetLeft;
-				objPanzoom.elScroller.scrollTop = objPanzoom.start.mapY * objPanzoom.el.clientHeight - pointerY + objPanzoom.el.offsetTop;
-				
-				//document.documentElement.scrollLeft
-				//document.documentElement.scrollTop 
+				const width = objPanzoom.start.width * zoomFactor;
+				const height = objPanzoom.start.height * zoomFactor;
+				const offsetX = objPanzoom.el.offsetLeft + objPanzoom.elScroller.offsetLeft;
+				const offsetY = objPanzoom.el.offsetTop + objPanzoom.elScroller.offsetTop;	
+				//window.requestAnimationFrame(() => {
+					objPanzoom.el.style.width = width+'px';
+					objPanzoom.elScroller.scrollTo(
+						objPanzoom.start.mapX * width - pointerX + offsetX,
+						objPanzoom.start.mapY * height - pointerY + offsetY
+					);
+				//});
 			}
 		});
 			
@@ -83,26 +90,34 @@ dystopiaru.panzoom = class {
 			if (e.touches.length < 2) {
 				objPanzoom.isZooming = false;
 				objPanzoom.start={};
+				objPanzoom.trigger(objPanzoom.el,'zoom.end');
+				document.body.classList.remove('dragging');
 			}
 		});
 
 		objPanzoom.el.addEventListener("wheel", (e) => {
 			e.preventDefault(); 
+			objPanzoom.trigger(objPanzoom.el,'zoom.start');
+			const delta = e.deltaY / 100;
 			const multiplier = objPanzoom.settings.scrollMultiplier;
-			const width = objPanzoom.el.clientWidth;
+			const startWidth = objPanzoom.el.clientWidth;
+			const startHeight = objPanzoom.el.clientHeight;
+			const offsetX = objPanzoom.el.offsetLeft + objPanzoom.elScroller.offsetLeft;
+			const offsetY = objPanzoom.el.offsetTop + objPanzoom.elScroller.offsetTop;			
 			//позиция курсора мыши относительно масштарируемого объекта
-			const scrollX = objPanzoom.elScroller.scrollLeft;
-			const scrollY = objPanzoom.elScroller.scrollTop;
-			const mapX = (scrollX + e.clientX - objPanzoom.el.offsetLeft) / objPanzoom.el.clientWidth;
-			const mapY = (scrollY + e.clientY - objPanzoom.el.offsetTop) / objPanzoom.el.clientHeight;
-			//Применение множителя
-			objPanzoom.el.style.width =  (e.deltaY < 0 ? width * multiplier : width / multiplier)+'px';
-			//Возвращение позиции скролла
-			objPanzoom.elScroller.scrollLeft = mapX * objPanzoom.el.clientWidth - e.clientX + objPanzoom.el.offsetLeft;
-			objPanzoom.elScroller.scrollTop = mapY * objPanzoom.el.clientHeight - e.clientY + objPanzoom.el.offsetTop;
-			
-			//document.documentElement.scrollLeft
-			//document.documentElement.scrollTop 
+			const mapX = (objPanzoom.elScroller.scrollLeft + e.clientX - offsetX) / startWidth;
+			const mapY = (objPanzoom.elScroller.scrollTop + e.clientY - offsetY) / startHeight;
+			const width = delta < 0 ? startWidth * multiplier : startWidth / multiplier;
+			const height = delta < 0 ? startHeight * multiplier : startHeight / multiplier;
+			//window.requestAnimationFrame(() => {
+				objPanzoom.el.style.width =  width+'px';
+				//Возвращение позиции скролла
+				objPanzoom.elScroller.scrollTo(
+					mapX * width - e.clientX + offsetX, 
+					mapY * height - e.clientY + offsetY
+				);
+			//});
+			objPanzoom.trigger(objPanzoom.el,'zoom.end');
 		},{passive: false});
 
 		objPanzoom.el.addEventListener('mousedown', (e) => {
@@ -111,33 +126,32 @@ dystopiaru.panzoom = class {
 			objPanzoom.start.pointerX = e.clientX;
 			objPanzoom.start.pointerY = e.clientY;	
 			//текущие значнения скролла
-			const scrollX = objPanzoom.elScroller.scrollLeft;
-			const scrollY = objPanzoom.elScroller.scrollTop;
-			objPanzoom.start.scrollX = scrollX;
-			objPanzoom.start.scrollY = scrollY;
+			objPanzoom.start.scrollX = objPanzoom.elScroller.scrollLeft;
+			objPanzoom.start.scrollY = objPanzoom.elScroller.scrollTop;
 			document.body.classList.add('dragging');
 		});
 		
 		window.addEventListener('mousemove', (e) => {
 			if (!objPanzoom.isDragging) return;
-			
-
-			objPanzoom.elScroller.scrollTo({
-				left: objPanzoom.start.scrollX - e.clientX + objPanzoom.start.pointerX,
-				top: objPanzoom.start.scrollY - e.clientY + objPanzoom.start.pointerY,
-			});
+			objPanzoom.elScroller.scrollTo(
+				objPanzoom.start.scrollX - e.clientX + objPanzoom.start.pointerX, 
+				objPanzoom.start.scrollY - e.clientY + objPanzoom.start.pointerY
+			);
+			objPanzoom.trigger(objPanzoom.el,'move.start');
 		});
 
 		window.addEventListener('mouseup', () => {
 			objPanzoom.isDragging = false;
 			objPanzoom.start={};
 			document.body.classList.remove('dragging');
+			objPanzoom.trigger(objPanzoom.el,'move.end');
 		});
 
 		window.addEventListener('mouseleave', () => {
 			objPanzoom.isDragging = false;
 			objPanzoom.start={};
 			document.body.classList.remove('dragging');
+			objPanzoom.trigger(objPanzoom.el,'move.end');
 		});
 	}
 }

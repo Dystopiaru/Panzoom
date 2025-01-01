@@ -14,19 +14,20 @@ body {
 	-webkit-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
-	display: block !important;
+	display: initial !important;
 	overflow:hidden;
 }
 
 #scheme-wrapper {
-	cursor: grab;
+	position: fixed;
+	top:0px;
+	left:230px;	
 	padding: 0px;
-	margin: 0px 0px 0px 230px;
-
-	overflow: auto;
-	width: calc(100vw - 238px);
-	height: calc(100vh - 10px);
-	
+	margin: 0px;	
+	cursor: grab;
+	width: calc(100vw - 230px);
+	height: 100vh;
+	overflow: scroll;
 }
 
 .hide {
@@ -38,7 +39,7 @@ body.dragging #scheme {
 }
 
 #scheme-wrapper #scheme {
-	background: url('../data/scheme.png');
+	background: url('../data/scheme.webp');
 	background-repeat: no-repeat;
 	background-size: contain;
 	width:3000px;
@@ -116,15 +117,18 @@ h3 {
 		padding:5px;
 	}
 	#scheme-wrapper {
-		width: calc(100vw - 8px);
-		margin: 0px 0vh 0px 0px;
-		height: calc(70vh - 8px);
+		top:0px;
+		left:0px;
+		width: 100vw;
+		height: 70vh;
 	}
 }
 
 g text {
 	paint-order: stroke;
-	stroke-width: 14 !important;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+	stroke-width: 16 !important;
 	font-weight: normal;
 	cursor: pointer;
 	font-family: "GOST type A";
@@ -138,6 +142,11 @@ g text.wiring {
 	font-weight: bold;
 	animation: blink 1000ms infinite;
 }
+
+body.dragging g text {
+	animation: none;
+}
+
 
 
 @keyframes blink {
@@ -218,3 +227,4 @@ g text.wiring {
 	stroke: yellow;
 	filter: drop-shadow(0px 0px 5px gray)
 }
+
