@@ -14,8 +14,8 @@ const main = class {
 			this.svgInit();
 		}
 		document.addEventListener('mousedown', function (e) {
-			e.preventDefault();
-			e.stopPropagation();
+			//e.preventDefault();
+			//e.stopPropagation();
 			const elClick = e.target;
 			const elWires= document.querySelector('[data-type="wires"]');
 			if (elClick.dataset.action=='scrollto') {
