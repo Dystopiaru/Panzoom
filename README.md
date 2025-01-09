@@ -1,4 +1,4 @@
-[Demo](https://dystopiaru.github.io/Uaz2013)
+[Demo](https://dystopiaru.github.io/Panzoom/)
 
 ## TL;DR
 - Optimized for Mobile Devices
