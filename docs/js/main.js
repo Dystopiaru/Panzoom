@@ -14,8 +14,8 @@ const main = class {
 			this.svgInit();
 		}
 		document.addEventListener('mousedown', function (e) {
-			e.preventDefault();
-			e.stopPropagation();
+			//e.preventDefault();
+			//e.stopPropagation();
 			const elClick = e.target;
 			const elWires= document.querySelector('[data-type="wires"]');
 			if (elClick.dataset.action=='scrollto') {
@@ -58,6 +58,7 @@ const main = class {
 	svgFetch(){
 		fetch('./data/scheme.svg').then(response => response.text()).then(svg => {
 			document.getElementById('scheme').innerHTML = svg;
+			document.getElementById('scheme').innerHTML += '<div id="copyright"><a href="https://github.com/Dystopiaru/Panzoom">https://github.com/Dystopiaru/Panzoom</a></div>';
 			this.svgInit();
 		});
 	}

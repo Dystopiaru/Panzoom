@@ -83,13 +83,16 @@ body.dragging #scheme {
 	font-weight: bold;
 }
 
+#copyright {
+	text-align: center;
+}
+
 h3 {
 	font-size: 20px;
 	margin: 5px;
 }
 
 @media (max-width: 800px) {
-
 	
 	#left-panel {
 		top: 70vh;
@@ -123,11 +126,17 @@ h3 {
 		height: 70vh;
 	}
 }
+svg	{
+	
+	shape-rendering: optimizeSpeed;
+	text-rendering: optimizeSpeed;
+	image-rendering: optimizeSpeed;
+}
 
 g text {
 	paint-order: stroke;
-	stroke-linecap: round;
-	stroke-linejoin: round;
+	stroke-linecap: butt;
+	stroke-linejoin: bevel;
 	stroke-width: 16 !important;
 	font-weight: normal;
 	cursor: pointer;
