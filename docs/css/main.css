@@ -123,17 +123,11 @@ h3 {
 		height: 70vh;
 	}
 }
-svg	{
-	
-	shape-rendering: optimizeSpeed;
-	text-rendering: optimizeSpeed;
-	image-rendering: optimizeSpeed;
-}
 
 g text {
 	paint-order: stroke;
-	stroke-linecap: butt;
-	stroke-linejoin: bevel;
+	stroke-linecap: round;
+	stroke-linejoin: round;
 	stroke-width: 16 !important;
 	font-weight: normal;
 	cursor: pointer;
