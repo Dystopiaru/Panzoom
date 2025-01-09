@@ -33,7 +33,7 @@
       overflow: scroll;
     }
     </style>
-    <script src="./js/dystopiaru.panzoom.js?11"></script>
+    <script src="dystopiaru.panzoom.js"></script>
     <script>
       const elScheme = document.getElementById('scheme');
       const objPanzoom  = new dystopiaru.panzoom(elScheme);
