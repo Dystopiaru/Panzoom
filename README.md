@@ -1,8 +1,11 @@
 [Demo](https://dystopiaru.github.io/Uaz2013)
 
 ## TL;DR
+- Optimized for Mobile Devices
+- Momentum scroll on PC
 - Lightweight
 - No dependencies
+
 
 ## Usage:
 ```html
