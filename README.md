@@ -1,8 +1,9 @@
 [Demo](https://dystopiaru.github.io/Panzoom/)
 
-## TL;DR
+## Features
+- Drag scroll and zoom
 - Optimized for Mobile Devices
-- Momentum scroll on PC
+- Momentum scroll
 - Lightweight
 - No dependencies
 
