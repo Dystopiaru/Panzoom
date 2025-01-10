@@ -21,7 +21,8 @@ dystopiaru.panzoom = class {
 			dystopiaru.panzoom.objects[index] = this;
 			this.el = el;	
 			el.style.transformOrigin='top left';
-			this.elScroller = this.scrollerClosest(el); 
+			//this.elScroller = this.scrollerClosest(el); 
+			this.elScroller = el.parentNode; 
 			this.init();
 		}
 		return dystopiaru.panzoom.objects[index];
