@@ -4,7 +4,7 @@ dystopiaru.panzoom = class {
 		scrollMultiplier: 1.25, //множитель скролла
 		momentumMin: 1, //минимальная скорость инерции
 		momentumMultiplier: 2, //множитель скорости инерции
-		momentumFade: 0.95, //затухание инерции
+		momentumFade: 0.96, //затухание инерции
 	};
 	
 	start={};
