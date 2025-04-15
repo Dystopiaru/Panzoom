@@ -3,7 +3,7 @@ dystopiaru.panzoom = class {
 	settings={
 		scrollMultiplier: 1.25, //множитель скролла
 		momentumMin: 1, //минимальная скорость инерции
-		momentumMultiplier: 3, //множитель скорости инерции
+		momentumMultiplier: 2, //множитель скорости инерции
 		momentumFade: 0.95, //затухание инерции
 	};
 	
@@ -23,6 +23,14 @@ dystopiaru.panzoom = class {
 			el.style.transformOrigin='top left';
 			//this.elScroller = this.scrollerClosest(el); 
 			this.elScroller = el.parentNode; 
+      
+      this.elScroller.style['-webkit-touch-callout']= 'none';
+      this.elScroller.style['-webkit-user-select']= 'none';
+      this.elScroller.style['-khtml-user-select']= 'none';
+      this.elScroller.style['-moz-user-select']= 'none';
+      this.elScroller.style['-ms-user-select']= 'none';
+      this.elScroller.style['user-select']= 'none';
+      
 			this.init();
 		}
 		return dystopiaru.panzoom.objects[index];
@@ -56,7 +64,8 @@ dystopiaru.panzoom = class {
 	//инерционное замедление
 	momentum() {
 		const objPanzoom = this;
-		if (Math.abs(objPanzoom.start.velocityX) < objPanzoom.settings.momentumMin && Math.abs(objPanzoom.start.velocityY) < objPanzoom.settings.momentumMin){
+    if(!objPanzoom.start.velocityX && !objPanzoom.start.velocityY) return false;
+ 		if (Math.abs(objPanzoom.start.velocityX) < objPanzoom.settings.momentumMin && Math.abs(objPanzoom.start.velocityY) < objPanzoom.settings.momentumMin){
 			document.body.classList.remove('dragging');
 			return;
 		}
@@ -66,6 +75,69 @@ dystopiaru.panzoom = class {
 		objPanzoom.start.velocityY *= objPanzoom.settings.momentumFade;
 		objPanzoom.frameMomentum = window.requestAnimationFrame(() => { objPanzoom.momentum(); });
 	}	
+  
+  zoomIn(){
+    const objPanzoom = this;
+    const focusX = objPanzoom.elScroller.clientWidth / 2;
+    const focusY = objPanzoom.elScroller.clientHeight / 2;
+    const scale = objPanzoom.scale * objPanzoom.settings.scrollMultiplier;
+    
+    objPanzoom.scaleSet(scale,focusX,focusY);
+  }
+  
+  zoomOut(){
+    const objPanzoom = this;
+    const focusX = objPanzoom.elScroller.clientWidth / 2;
+    const focusY = objPanzoom.elScroller.clientHeight / 2;
+    const scale = objPanzoom.scale / objPanzoom.settings.scrollMultiplier;
+    objPanzoom.scaleSet(scale,focusX,focusY);
+  }
+  
+  scaleSet(scale,focusX,focusY){
+    const objPanzoom = this;
+    
+    if(objPanzoom.trottle) return;
+    objPanzoom.trottle = true;
+    cancelAnimationFrame(objPanzoom.frameMomentum);
+
+    const startWidth = objPanzoom.el.clientWidth * objPanzoom.scale;
+    const startHeight = objPanzoom.el.clientHeight * objPanzoom.scale;
+
+    if(scale < objPanzoom.scale){
+      if(scale * objPanzoom.el.clientWidth < objPanzoom.elScroller.clientWidth){
+       scale = objPanzoom.elScroller.clientWidth / objPanzoom.el.clientWidth;
+      }
+      if(scale * objPanzoom.el.clientHeight < objPanzoom.elScroller.clientHeight){
+       scale = objPanzoom.elScroller.clientHeight / objPanzoom.el.clientHeight;
+      }
+    }
+        
+    let multiplier =   scale / objPanzoom.scale;
+    objPanzoom.scale = scale;
+
+    //позиция курсора мыши относительно масштарируемого объекта
+    const mapX = (objPanzoom.elScroller.scrollLeft + focusX) / startWidth;
+    const mapY = (objPanzoom.elScroller.scrollTop + focusY) / startHeight;
+    const width =  startWidth * multiplier;
+    const height = startHeight * multiplier;
+     
+    //Возвращение позиции скролла
+    if(objPanzoom.scale>1){
+      objPanzoom.el.style.transform = 'scale('+objPanzoom.scale+')';
+      objPanzoom.elScroller.scrollTo(
+        mapX * width - focusX, 
+        mapY * height - focusY
+      );
+    } else {
+      objPanzoom.elScroller.scrollTo(
+        mapX * width - focusX, 
+        mapY * height - focusY
+      );
+      objPanzoom.el.style.transform = 'scale('+objPanzoom.scale+')';
+    }
+    objPanzoom.trottle=false;
+  }
+  
 	
 	init(){
 		const objPanzoom = this;
@@ -74,9 +146,7 @@ dystopiaru.panzoom = class {
 		objPanzoom.scale=1;
 		
 		objPanzoom.el.addEventListener('touchstart', (e) => {
-			
 			document.body.classList.add('dragging');
-
 			if (e.touches.length === 2) {
 				cancelAnimationFrame(objPanzoom.frameMomentum);
 				//objPanzoom.trigger(objPanzoom.el,'zoom.start');
@@ -97,38 +167,14 @@ dystopiaru.panzoom = class {
 					
 		document.addEventListener('touchmove', (e) => {
 			if (e.touches.length === 2 && objPanzoom.isZooming) {
-				
-				if(objPanzoom.trottle) return;
-				objPanzoom.trottle = true;
-				//cancelAnimationFrame(objPanzoom.frameScale);				
-				
 				const zoomFactor = objPanzoom.getDistance(e.touches) / objPanzoom.start.pointerDistance;
-				//средняя точка между пальцами
 				const pointerX = (e.touches[0].clientX+e.touches[1].clientX)/2;
-				const pointerY = (e.touches[0].clientY+e.touches[1].clientY)/2;
-				const width = objPanzoom.start.width * zoomFactor;
-				const height = objPanzoom.start.height * zoomFactor;
-				const offsetX = objPanzoom.el.offsetLeft + objPanzoom.elScroller.offsetLeft;
-				const offsetY = objPanzoom.el.offsetTop + objPanzoom.elScroller.offsetTop;	
-				objPanzoom.scale = zoomFactor*objPanzoom.start.scale;
-				//Возвращение позиции скролла
-				objPanzoom.frameScale = window.requestAnimationFrame(() => {
-					//objPanzoom.el.style.width = width+'px';
-					if(objPanzoom.scale>1){
-						objPanzoom.el.style.transform = 'scale('+objPanzoom.scale+')';
-						objPanzoom.elScroller.scrollTo(
-							objPanzoom.start.mapX * width - pointerX + offsetX,
-							objPanzoom.start.mapY * height - pointerY + offsetY
-						);
-					} else {
-						objPanzoom.elScroller.scrollTo(
-							objPanzoom.start.mapX * width - pointerX + offsetX,
-							objPanzoom.start.mapY * height - pointerY + offsetY
-						);
-						objPanzoom.el.style.transform = 'scale('+objPanzoom.scale+')';
-					}
-					objPanzoom.trottle=false;
-				});
+				const pointerY = (e.touches[0].clientY+e.touches[1].clientY)/2;        
+        const bouding = objPanzoom.elScroller.getBoundingClientRect();
+        const focusX = pointerX-bouding.left;
+        const focusY = pointerY-bouding.top;
+        let scale = zoomFactor * objPanzoom.start.scale;
+        objPanzoom.scaleSet(scale,focusX,focusY);
 			}
 		});
 			
@@ -141,51 +187,19 @@ dystopiaru.panzoom = class {
 
 		objPanzoom.el.addEventListener("wheel", (e) => {
 			e.preventDefault(); 
-			if(objPanzoom.trottle) return;
-			objPanzoom.trottle = true;
-			cancelAnimationFrame(objPanzoom.frameMomentum);
-
-			//cancelAnimationFrame(objPanzoom.frameScale);
-			//objPanzoom.trigger(objPanzoom.el,'zoom.start');
-			const delta = e.deltaY / 100;
-			const multiplier = objPanzoom.settings.scrollMultiplier;
-			const startWidth = objPanzoom.el.clientWidth * objPanzoom.scale;
-			const startHeight = objPanzoom.el.clientHeight * objPanzoom.scale;
-
-			
-			const offsetX = objPanzoom.el.offsetLeft + objPanzoom.elScroller.offsetLeft;
-			const offsetY = objPanzoom.el.offsetTop + objPanzoom.elScroller.offsetTop;			
-			//позиция курсора мыши относительно масштарируемого объекта
-			const mapX = (objPanzoom.elScroller.scrollLeft + e.clientX - offsetX) / startWidth;
-			const mapY = (objPanzoom.elScroller.scrollTop + e.clientY - offsetY) / startHeight;
-			const width = delta < 0 ? startWidth * multiplier : startWidth / multiplier;
-			const height = delta < 0 ? startHeight * multiplier : startHeight / multiplier;
-			
-			if(delta < 0){
-				objPanzoom.scale = objPanzoom.scale * multiplier;
-			} else {
-				objPanzoom.scale = objPanzoom.scale / multiplier;
-			}
-			
-			//objPanzoom.frameScale = window.requestAnimationFrame(() => {
-				//Возвращение позиции скролла
-				if(objPanzoom.scale>1){
-					objPanzoom.el.style.transform = 'scale('+objPanzoom.scale+')';
-					objPanzoom.elScroller.scrollTo(
-						mapX * width - e.clientX + offsetX, 
-						mapY * height - e.clientY + offsetY
-					);
-				} else {
-					objPanzoom.elScroller.scrollTo(
-						mapX * width - e.clientX + offsetX, 
-						mapY * height - e.clientY + offsetY
-					);
-					objPanzoom.el.style.transform = 'scale('+objPanzoom.scale+')';
-				}
-				objPanzoom.trottle=false;
-				//objPanzoom.trigger(objPanzoom.el,'zoom.end');
-			//});
-		},{passive: false});
+      e.stopPropagation();
+      const bouding = objPanzoom.elScroller.getBoundingClientRect();
+      const focusX = e.clientX-bouding.left;
+      const focusY = e.clientY-bouding.top;
+      const multiplier = objPanzoom.settings.scrollMultiplier;
+      let scale;
+      if(e.deltaY < 0){
+        scale = objPanzoom.scale * multiplier;
+      } else {
+        scale = objPanzoom.scale / multiplier;
+      }
+      objPanzoom.scaleSet(scale,focusX,focusY);
+   	},{passive: false});
 
 		objPanzoom.el.addEventListener('mousedown', (e) => {
 			cancelAnimationFrame(objPanzoom.frameMomentum);
@@ -209,10 +223,6 @@ dystopiaru.panzoom = class {
 		
 		window.addEventListener('mousemove', (e) => {
 			if (!objPanzoom.isDragging) return;
-			
-
-			//cancelAnimationFrame(objPanzoom.frameMomentum);
-			
 			objPanzoom.start.deltaX = e.clientX - objPanzoom.start.pointerX;
       objPanzoom.start.deltaY = e.clientY - objPanzoom.start.pointerY;
 			objPanzoom.start.velocityX = objPanzoom.start.deltaX - (objPanzoom.start.lastX ||  objPanzoom.start.deltaX);
@@ -236,14 +246,19 @@ dystopiaru.panzoom = class {
 		window.addEventListener('mouseup', () => {
 			objPanzoom.isDragging = false;
 			objPanzoom.momentum();
-			//objPanzoom.trigger(objPanzoom.el,'move.end');
 		});
 
-		window.addEventListener('mouseleave', () => {
+		objPanzoom.elScroller.addEventListener('wheel', (e) => {
+      e.stopPropagation();
+		},{passive: false});
+    
+		objPanzoom.el.addEventListener('mouseout', () => {
 			objPanzoom.isDragging = false;
-			objPanzoom.momentum();
-			//objPanzoom.trigger(objPanzoom.el,'move.end');
 		});
+		objPanzoom.el.addEventListener('pointerout', () => {
+			objPanzoom.isDragging = false;
+		});
+    
 	}
 
 }
