@@ -144,7 +144,7 @@ dystopiaru.panzoom = class {
 		objPanzoom.frameMomentum=false;
 		objPanzoom.frameScale=false;
 		objPanzoom.scale=1;
-		
+		objPanzoom.wheelDelta=0;
 		objPanzoom.el.addEventListener('touchstart', (e) => {
 			document.body.classList.add('dragging');
 			if (e.touches.length === 2) {
@@ -184,21 +184,32 @@ dystopiaru.panzoom = class {
 			}
 			document.body.classList.remove('dragging');
 		});
-
+    
 		objPanzoom.el.addEventListener("wheel", (e) => {
 			e.preventDefault(); 
-      e.stopPropagation();
+      e.stopPropagation();      
+      
+      objPanzoom.wheelDelta += e.wheelDelta;
+      if(objPanzoom.wheelTrottle) return;
       const bouding = objPanzoom.elScroller.getBoundingClientRect();
-      const focusX = e.clientX-bouding.left;
-      const focusY = e.clientY-bouding.top;
-      const multiplier = objPanzoom.settings.scrollMultiplier;
-      let scale;
-      if(e.deltaY < 0){
-        scale = objPanzoom.scale * multiplier;
-      } else {
-        scale = objPanzoom.scale / multiplier;
-      }
-      objPanzoom.scaleSet(scale,focusX,focusY);
+			objPanzoom.start.pointerX = e.clientX-bouding.left;
+			objPanzoom.start.pointerY = e.clientY-bouding.top;
+      
+      objPanzoom.wheelTrottle = setTimeout(()=>{
+        console.log(objPanzoom.wheelDelta);
+       // const focusX = e.clientX-bouding.left;
+       // const focusY = e.clientY-bouding.top;
+        const multiplier = objPanzoom.settings.scrollMultiplier;
+        let scale;
+        if(objPanzoom.wheelDelta < 0){
+          scale = objPanzoom.scale * Math.abs(objPanzoom.wheelDelta/120 * multiplier);
+        } else {
+          scale = objPanzoom.scale / Math.abs(objPanzoom.wheelDelta/120 * multiplier);
+        }
+        objPanzoom.scaleSet(scale,objPanzoom.start.pointerX,objPanzoom.start.pointerY);        
+        objPanzoom.wheelDelta=0;
+        objPanzoom.wheelTrottle=null
+      },5);
    	},{passive: false});
 
 		objPanzoom.el.addEventListener('mousedown', (e) => {
@@ -220,6 +231,7 @@ dystopiaru.panzoom = class {
       objPanzoom.start.deltaY = 0;
 			cancelAnimationFrame(objPanzoom.frameMomentum);
 		});
+
 		
 		window.addEventListener('mousemove', (e) => {
 			if (!objPanzoom.isDragging) return;
