@@ -1,0 +1,239 @@
+@font-face {
+	font-family: 'GOST type A';
+	src: url('../font/GOST type A.eot');
+	src: local('GOST type A'),
+		url('../font/GOST_type_A.woff') format('woff'),
+		url('../font/GOST_type_A.eot?#iefix') format('embedded-opentype'),
+		url('../font/GOST_type_A.ttf') format('truetype');
+	font-weight: normal;
+	font-style: italic;
+}
+
+body { 
+	font-family: "GOST type A";
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	display: initial !important;
+	overflow:hidden;
+}
+
+#scheme-wrapper {
+	position: fixed;
+	top:0px;
+	left:230px;	
+	padding: 0px;
+	margin: 0px;	
+	cursor: grab;
+	width: calc(100vw - 230px);
+	height: 100vh;
+	overflow: scroll;
+}
+
+.hide {
+	visibility: hidden;
+}
+
+body.dragging #scheme {
+	cursor: grabbing;
+}
+
+#scheme-wrapper #scheme {
+	background: url('../data/scheme.webp');
+	background-repeat: no-repeat;
+	background-size: contain;
+	width:3000px;
+}
+
+#scheme-wrapper #scheme svg {
+	width:100%;
+	height:100%;
+}
+
+#left-panel {
+	position:fixed;
+	left:0px;
+	top:0px;
+	min-height: 100vh;
+	background:#ffffff;
+	border: 1px solid #c0c0c0;
+	overflow: hidden;
+	width: 230px;
+}
+
+#left-panel .subpanel {
+	padding: 20px;
+	height: calc(50vh - 40px);
+	overflow-x: hidden;
+	overflow-y: scroll;
+	width: calc(100% - 40px);
+}
+
+#left-panel .scroll-btn {
+	font-size: 20px;
+	padding:5px;
+	cursor: pointer;
+}
+
+#left-panel .scroll-btn.active {
+	font-weight: bold;
+}
+
+#left-panel .scroll-btn:hover {
+	font-weight: bold;
+}
+
+#copyright {
+	text-align: left;
+}
+
+h3 {
+	font-size: 20px;
+	margin: 5px;
+}
+
+@media (max-width: 800px) {
+	
+	#left-panel {
+		top: 70vh;
+		height: calc(30vh - 10px);
+		width: 100vw;
+		min-width: calc(100vw - 40px);
+		
+	}
+	#left-panel h3 {
+		display:none;
+	}
+	#left-panel .subpanel {
+		padding: 5px;
+		display:inline-block;
+		height: calc(30vh - 70px);
+	}
+	#left-panel .subpanel1 {
+		width: calc(20% - 10px);
+	}
+	#left-panel .subpanel2 {
+		width: calc(80% - 15px);
+	}
+	#left-panel .scroll-btn {
+		font-size:20px;
+		padding:5px;
+	}
+	#scheme-wrapper {
+		top:0px;
+		left:0px;
+		width: 100vw;
+		height: 70vh;
+	}
+}
+svg	{
+	
+	shape-rendering: optimizeSpeed;
+	text-rendering: optimizeSpeed;
+	image-rendering: optimizeSpeed;
+}
+
+g text {
+	paint-order: stroke;
+	stroke-linecap: butt;
+	stroke-linejoin: bevel;
+	stroke-width: 16 !important;
+	font-weight: normal;
+	cursor: pointer;
+	font-family: "GOST type A";
+}
+
+g text.active {
+	text-decoration: underline;
+}
+
+g text.wiring {
+	font-weight: bold;
+	animation: blink 1000ms infinite;
+}
+
+body.dragging g text {
+	animation: none;
+}
+
+
+
+@keyframes blink {
+	50% {
+		opacity: 1;
+	}
+	100%,0% {
+		opacity: 0.1;
+	}
+}
+.c1-black {
+	fill: black;
+}
+.c1-blue {
+	fill: blue;
+}			
+.c1-brown {
+	fill: brown;
+}			
+.c1-green {
+	fill: green;
+}		
+.c1-grey {
+	fill: grey;
+}		
+.c1-orange {
+	fill: orange;
+}			
+.c1-pink {
+	fill: pink;
+}			
+.c1-red {
+	fill: red;
+}
+.c1-violet {
+	fill: violet;
+}
+.c1-white {
+	fill: white;
+	filter: drop-shadow(0px 0px 5px gray)
+}
+.c1-yellow {
+	fill: yellow;
+	filter: drop-shadow(0px 0px 5px gray)
+}
+.c2-black {
+	stroke: black;
+}
+.c2-blue {
+	stroke: blue;
+}			
+.c2-brown {
+	stroke: brown;
+}			
+.c2-green {
+	stroke: green;
+}		
+.c2-grey {
+	stroke: grey;
+}		
+.c2-orange {
+	stroke: orange;
+}			
+.c2-pink {
+	stroke: pink;
+}			
+.c2-red {
+	stroke: red;
+}
+.c2-violet {
+	stroke: violet;
+}
+.c2-white {
+	stroke: white;
+	filter: drop-shadow(0px 0px 5px gray)
+}
+.c2-yellow {
+	stroke: yellow;
+	filter: drop-shadow(0px 0px 5px gray)
+}
+
