@@ -123,8 +123,8 @@ viewBox="0 0 101495.78 40495.69"
     .fnt3 {font-weight:normal;font-size:314.92px;font-family:'GOST type A'}
     .fnt8 {font-weight:normal;font-size:314.95px;font-family:'GOST type A'}
     .fnt2 {font-weight:normal;font-size:314.96px;font-family:'GOST type A'}
-    .fnt7 {font-weight:normal;font-size:317.4px;font-family:'GOST type A'}
-    .fnt0 {font-weight:normal;font-size:317.41px;font-family:'GOST type A'}
+    .fnt7 {font-weight:normal;font-size:260px;font-family:'GOST type A'}
+    .fnt0 {font-weight:normal;font-size:260px;font-family:'GOST type A'}
    ]]>
   </style>
  </defs>
@@ -1857,39 +1857,6 @@ viewBox="0 0 101495.78 40495.69"
   <text x="18642.35" y="24469.28"  class="fil0 str1 fnt11">Spark plug</text>
   <text x="18642.35" y="26648.01"  class="fil0 str1 fnt11">Spark plug</text>
   <text x="15859.96" y="26957.15"  class="fil0 str1 fnt11">Under-hood fuse box</text>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 -8049.16 79574.2">
-   <text x="50811.77" y="20426.51"  class="fil0 str1 fnt12">Activation relay</text>
-  </g>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 -8049.16 79574.2">
-   <text x="51028.79" y="20648.46"  class="fil0 str1 fnt12">starter</text>
-  </g>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 -7785.94 81356.9">
-   <text x="50775.58" y="20426.51"  class="fil0 str1 fnt12">Main relay</text>
-  </g>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 -8048.77 83551.1">
-   <text x="50898.06" y="20426.51"  class="fil0 str1 fnt12">Activation relay</text>
-  </g>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 -8048.77 83551.1">
-   <text x="50784.39" y="20648.46"  class="fil0 str1 fnt12">horn signals</text>
-  </g>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 -8049.16 85479.4">
-   <text x="50963.08" y="20426.51"  class="fil0 str1 fnt12">Activation relay</text>
-  </g>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 -8049.16 85479.4">
-   <text x="50787.12" y="20648.46"  class="fil0 str1 fnt12">electric fuel pump</text>
-  </g>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 -8049.16 87537.7">
-   <text x="51073.65" y="20426.51"  class="fil0 str1 fnt12">Activation relay</text>
-  </g>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 -8049.16 87537.7">
-   <text x="50791.75" y="20648.46"  class="fil0 str1 fnt12">electric fan1</text>
-  </g>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 -8049.16 89483.2">
-   <text x="51089.83" y="20426.51"  class="fil0 str1 fnt12">Activation relay</text>
-  </g>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 -8049.16 89483.2">
-   <text x="50792.43" y="20648.46"  class="fil0 str1 fnt12">electric fan2</text>
-  </g>
   <text x="14345.31" y="23303.68"  class="fil1 str1 fnt0">Bk</text>
   <text x="14353.46" y="23562.57"  class="fil0 str1 fnt0">Gr</text>
   <text x="14345.31" y="23822.31"  class="fil0 str1 fnt0">W</text>
@@ -1938,136 +1905,8 @@ viewBox="0 0 101495.78 40495.69"
   <text x="34639.86" y="822"  class="fil0 str1 fnt11">glove box</text>
   <text x="34528.04" y="2478.45"  class="fil0 str1 fnt11">Courtesy light</text>
   <text x="34630.39" y="2737.38"  class="fil0 str1 fnt11">glove box</text>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 13746.7 59872.5">
-   <text x="51134.09" y="20455.79"  class="fil0 str1 fnt11">Gearmotor</text>
-  </g>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 13746.7 59872.5">
-   <text x="50796.52" y="20714.73"  class="fil0 str1 fnt11">air mixing</text>
-  </g>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 13744 63323.7">
-   <text x="50810.75" y="20455.79"  class="fil0 str1 fnt11">Distribution gearmotor</text>
-  </g>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 13744 63323.7">
-   <text x="51268.89" y="20714.73"  class="fil0 str1 fnt11">airflow</text>
-  </g>
   <text x="39974.37" y="414.46"  class="fil0 str1 fnt11">Fan electric motor</text>
   <text x="40251.9" y="673.4"  class="fil0 str1 fnt11">HVAC system</text>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 19530.1 54992.9">
-   <text x="50861.05" y="20455.79"  class="fil0 str1 fnt11">Control block</text>
-  </g>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 19530.1 54992.9">
-   <text x="51319.17" y="20714.73"  class="fil0 str1 fnt11">speed</text>
-  </g>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 19530.1 54992.9">
-   <text x="50800.4" y="20973.67"  class="fil0 str1 fnt11">electric fan</text>
-  </g>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 19530.1 56389.5">
-   <text x="51041.61" y="20455.79"  class="fil0 str1 fnt11">Sensor</text>
-  </g>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 19530.1 56389.5">
-   <text x="50779.41" y="20714.73"  class="fil0 str1 fnt11">temperature</text>
-  </g>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 19530.1 56389.5">
-   <text x="50857.78" y="20973.67"  class="fil0 str1 fnt11">evaporator</text>
-  </g>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 20037.5 61915">
-   <text x="50838.54" y="20455.79"  class="fil0 str1 fnt11">HVAC control unit</text>
-  </g>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 13636.1 65800.8">
-   <text x="50957.38" y="20426.51"  class="fil0 str1 fnt12">Activation relay</text>
-  </g>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 13636.1 65800.8">
-   <text x="50786.88" y="20648.46"  class="fil0 str1 fnt12">windshield heating</text>
-  </g>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 13636.1 65800.8">
-   <text x="51272.56" y="20870.4"  class="fil0 str1 fnt12">glass</text>
-  </g>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 13636.1 67732">
-   <text x="51040.04" y="20426.51"  class="fil0 str1 fnt12">Timer relay</text>
-  </g>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 13636.1 67732">
-   <text x="50786.88" y="20648.46"  class="fil0 str1 fnt12">windshield heating</text>
-  </g>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 13636.1 67732">
-   <text x="51272.56" y="20870.4"  class="fil0 str1 fnt12">glass</text>
-  </g>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 13858.3 69601.1">
-   <text x="51017.1" y="20367.48"  class="fil0 str1 fnt14">Relief relay</text>
-  </g>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 13858.3 69601.1">
-   <text x="51082.26" y="20514.83"  class="fil0 str1 fnt14">auxiliary</text>
-  </g>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 13858.3 69601.1">
-  </g>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 13858.3 71769.1">
-   <text x="51055.54" y="20426.51"  class="fil0 str1 fnt12">Relay</text>
-  </g>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 13858.3 71769.1">
-   <text x="50786.87" y="20648.46"  class="fil0 str1 fnt12">wipers</text>
-  </g>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 13636.1 73259.8">
-   <text x="50775.13" y="20426.51"  class="fil0 str1 fnt12">Relay</text>
-  </g>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 13636.1 73259.8">
-   <text x="50831.96" y="20648.46"  class="fil0 str1 fnt12">indicators</text>
-  </g>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 13636.1 73259.8">
-   <text x="50909.47" y="20870.4"  class="fil0 str1 fnt12">turn signal</text>
-  </g>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 13636.1 74918.6">
-   <text x="50779.42" y="20426.51"  class="fil0 str1 fnt12">Activation relay</text>
-  </g>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 13636.1 74918.6">
-   <text x="50900.83" y="20648.46"  class="fil0 str1 fnt12">compressor</text>
-  </g>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 13636.1 74918.6">
-   <text x="50864.46" y="20870.4"  class="fil0 str1 fnt12">air conditioner</text>
-  </g>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 13636.1 76844.5">
-   <text x="50779.42" y="20426.51"  class="fil0 str1 fnt12">Activation relay</text>
-  </g>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 13636.1 76844.5">
-   <text x="50807.53" y="20648.46"  class="fil0 str1 fnt12">electric pump</text>
-  </g>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 13636.1 76844.5">
-   <text x="50955.1" y="20870.4"  class="fil0 str1 fnt12">heater</text>
-  </g>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 13636.1 78796.6">
-   <text x="50795.59" y="20426.51"  class="fil0 str1 fnt12">Activation relay</text>
-  </g>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 13636.1 78796.6">
-   <text x="50780.1" y="20648.46"  class="fil0 str1 fnt12">low beam</text>
-  </g>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 13636.1 78796.6">
-   <text x="51234.78" y="20870.4"  class="fil0 str1 fnt12">headlights</text>
-  </g>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 13636.1 80717.4">
-   <text x="50784.81" y="20426.51"  class="fil0 str1 fnt12">Activation relay</text>
-  </g>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 13636.1 80717.4">
-   <text x="50779.65" y="20648.46"  class="fil0 str1 fnt12">high beam</text>
-  </g>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 13636.1 80717.4">
-   <text x="51223.99" y="20870.4"  class="fil0 str1 fnt12">headlights</text>
-  </g>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 13636.1 82929.2">
-   <text x="51076.02" y="20426.51"  class="fil0 str1 fnt12">Activation relay</text>
-  </g>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 13636.1 82929.2">
-   <text x="50791.85" y="20648.46"  class="fil0 str1 fnt12">door glass heating</text>
-  </g>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 13636.1 82929.2">
-   <text x="51107.03" y="20870.4"  class="fil0 str1 fnt12">rear door and mirrors</text>
-  </g>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 13858.3 84813.5">
-   <text x="51043.66" y="20426.51"  class="fil0 str1 fnt12">Activation relay</text>
-  </g>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 13858.3 84813.5">
-   <text x="50790.49" y="20648.46"  class="fil0 str1 fnt12">fog lights</text>
-  </g>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 14079.9 87091.7">
-   <text x="50794.79" y="20426.51"  class="fil0 str1 fnt12">Diagnostic connector</text>
-  </g>
   <text x="42990.52" y="38264.64"  class="fil0 str1 fnt12">System buzzer</text>
   <text x="43091.29" y="38486.59"  class="fil0 str1 fnt12">safety</text>
   <text x="43274.7" y="38708.53"  class="fil0 str1 fnt12">parking</text>
@@ -2075,40 +1914,6 @@ viewBox="0 0 101495.78 40495.69"
   <text x="42851.27" y="39407.24"  class="fil0 str1 fnt0">R</text>
   <text x="48486.72" y="635.52"  class="fil0 str1 fnt11">Emergency switch</text>
   <text x="48947.63" y="894.46"  class="fil0 str1 fnt11">alarm</text>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 30080.4 59457.4">
-   <text x="50835.06" y="20455.79"  class="fil0 str1 fnt11">Heater switch</text>
-  </g>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 30080.4 59457.4">
-   <text x="51027.96" y="20714.73"  class="fil0 str1 fnt11">windshield</text>
-  </g>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 30080.4 63685.5">
-   <text x="50805.62" y="20455.79"  class="fil0 str1 fnt11">Air conditioning switch</text>
-  </g>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 30080.4 67754.9">
-   <text x="51032.16" y="20455.79"  class="fil0 str1 fnt11">Blower switch</text>
-  </g>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 30080.4 67754.9">
-   <text x="50803.1" y="20714.73"  class="fil0 str1 fnt11">windshield «</text>
-   <text x="52943.07" y="20714.73"  class="fil0 str1 fnt11">»</text>
-   <text x="52569.32" y="20714.73"  class="fil0 str1 fnt11">MAX</text>
-  </g>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 30080.4 71814">
-   <text x="50837.7" y="20455.79"  class="fil0 str1 fnt11">Position switch</text>
-  </g>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 30080.4 71814">
-   <text x="50891.46" y="20714.73"  class="fil0 str1 fnt11">recirculation damper</text>
-  </g>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 30080.4 76203.2">
-   <text x="50850.08" y="20455.79"  class="fil0 str1 fnt11">Glass heater switch</text>
-  </g>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 30080.4 76203.2">
-   <text x="51311.24" y="20714.73"  class="fil0 str1 fnt11">rear door and mirrors</text>
-  </g>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 30080.4 79855.6">
-   <text x="50794.56" y="20455.79"  class="fil0 str1 fnt11">Switch «</text>
-   <text x="52543.29" y="20455.79"  class="fil0 str1 fnt11">»</text>
-   <text x="52102.63" y="20455.79"  class="fil0 str1 fnt11">AUTO</text>
-  </g>
   <text x="48874.81" y="30466.43"  class="fil0 str1 fnt11">Pedal module</text>
   <text x="48913.64" y="30725.37"  class="fil0 str1 fnt11">accelerator</text>
   <text x="51438.37" y="19624.82"  class="fil0 str1 fnt11">Immobilizer</text>
@@ -2242,9 +2047,6 @@ viewBox="0 0 101495.78 40495.69"
   <text x="99065.2" y="10794.06"  class="fil0 str1 fnt11">Control unit</text>
   <text x="98896.43" y="11052.99"  class="fil0 str1 fnt11">safety system</text>
   <text x="99399.75" y="11311.93"  class="fil0 str1 fnt11">parking</text>
-  <g transform="matrix2.64845E-14 -1 1 2.64845E-14 80284.9 69762.8">
-   <text x="50828" y="20455.79"  class="fil0 str1 fnt11">Parking safety system sensors</text>
-  </g>
   <text x="98999.45" y="23116.58"  class="fil0 str1 fnt11">Heating element</text>
   <text x="98665.15" y="23375.52"  class="fil0 str1 fnt11">rear glass antenna</text>
   <text x="98685.11" y="24547.79"  class="fil0 str1 fnt11">Additional light</text>
