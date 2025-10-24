@@ -64,7 +64,7 @@ const main = class {
 	}
 	
 	svgInit(){
-		const regex = /^([А-Я][а-я]?)([А-Я][а-я]?)?([0-9]{0,4})([а-я]?)$/;
+		const regex = /^([А-ЯA-Z][а-яa-z]?)([А-ЯA-Z][а-яa-z]?)?([0-9]{0,4})([а-яa-z]?)$/;
 		const regex2 = /^\.(.+)$/;
 		const elModules = document.querySelector('[data-type="modules"]');
 		const arrLinks=[];
@@ -183,4 +183,5 @@ const main = class {
 }
 
 objMain = new main();
+
 
