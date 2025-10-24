@@ -151,7 +151,31 @@ const main = class {
 			case 'Б':
 				return 'white';	
 			case 'Ж':
-				return 'yellow';					
+				return 'yellow';
+				
+			case 'Bk':
+				return 'black';			
+			case 'Bl':
+				return 'blue';		
+			case 'Br':
+				return 'brown';					
+			case 'G':
+				return 'green';			
+			case 'Gr':
+				return 'grey';			
+			case 'O':
+				return 'orange';
+			case 'P':
+				return 'pink';					
+			case 'R':
+				return 'red';
+			case 'V':
+				return 'violet';
+			case 'W':
+				return 'white';	
+			case 'Y':
+				return 'yellow';
+				
 			default:
 				return '';
 		}
@@ -159,3 +183,4 @@ const main = class {
 }
 
 objMain = new main();
+
